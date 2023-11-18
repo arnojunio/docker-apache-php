@@ -1,19 +1,6 @@
-version: "5.0"
+version: "3.7"
 services:
-
-  db:
-    container_name: "mariadb"
-    image: "mariadb:10.4"
-    command: ["mysqld", "--sql_mode=", "--default_time_zone=America/Sao_Paulo"]
-    environment:
-      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
-    ports:
-      - 3306:3306
-    volumes:
-      - ./conf/db:/var/lib/mysql
-
   php:
-    container_name: "php-apache"
     build:
       context: .
     extra_hosts:
@@ -23,7 +10,3 @@ services:
     ports:
       - 80:80
       - 443:443
-    links:
-      - db
-    depends_on:
-      - db
